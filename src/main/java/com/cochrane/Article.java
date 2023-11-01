@@ -14,11 +14,17 @@ public class Article {
         private String date;
 
     public Article(String url, String topic, String title, String author, String publicationDate) {
-        this.url=url;
+        this.url=removeCharaterAfterFull(url);
         this.topic=topic;
         this.title=title;
         this.author=author;
         this.date=dateParser(publicationDate);
+    }
+
+    private static String removeCharaterAfterFull(String url) {
+        String substringToKeep = "/full";
+        int index = url.indexOf(substringToKeep);
+        return  (index != -1) ? url.substring(0, index + substringToKeep.length()) : url;
     }
 
     public String getUrl() {
@@ -82,9 +88,6 @@ public class Article {
 
     @Override
     public String toString() {
-        return  url + " | " + topic + " | "+ title +" | "+ author +" | "+ date+"\n";
-        /*http://onlinelibrary.wiley.com/doi/10.1002/14651858.CD002204.pub4/full| Allergy &
-        intolerance|Antifungal therapies for allergic bronchopulmonary aspergillosis in people with cystic
-        fibrosis|Heather E Elphick, Kevin W Southern|2016-11-08*/
+        return  url + " | " + topic + " | "+ title +" | "+ author +" | "+ date+"\n\n";
     }
 }
