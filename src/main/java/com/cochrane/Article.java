@@ -1,19 +1,24 @@
 package com.cochrane;
 
+import org.jsoup.helper.StringUtil;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Article {
         private String url;
         private String topic;
         private String title;
         private String author;
         private String date;
-        private String reviews;
 
     public Article(String url, String topic, String title, String author, String publicationDate) {
         this.url=url;
         this.topic=topic;
         this.title=title;
         this.author=author;
-        this.date=publicationDate;
+        this.date=dateParser(publicationDate);
     }
 
     public String getUrl() {
@@ -56,23 +61,30 @@ public class Article {
         this.date = date;
     }
 
-    public String getReviews() {
-        return reviews;
-    }
+    public static String dateParser(String inputDate) {
+        if (StringUtil.isBlank(inputDate)) return inputDate;
+        SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        SimpleDateFormat outputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public void setReviews(String reviews) {
-        this.reviews = reviews;
+        try {
+            Date date = inputDateFormat.parse(inputDate);
+            String formattedDate = outputDateFormat.format(date);
+            System.out.println("Original Date: " + inputDate);
+            System.out.println("Formatted Date: " + formattedDate);
+            return formattedDate;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            //TODO add logger.error()
+            System.err.println(e.getMessage());
+        }
+        return inputDate;
     }
 
     @Override
     public String toString() {
-        return "Article{" +
-                "url='" + url + '\'' +
-                ", topic='" + topic + '\'' +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", date='" + date + '\'' +
-                ", reviews='" + reviews + '\'' +
-                '}';
+        return  url + " | " + topic + " | "+ title +" | "+ author +" | "+ date+"\n";
+        /*http://onlinelibrary.wiley.com/doi/10.1002/14651858.CD002204.pub4/full| Allergy &
+        intolerance|Antifungal therapies for allergic bronchopulmonary aspergillosis in people with cystic
+        fibrosis|Heather E Elphick, Kevin W Southern|2016-11-08*/
     }
 }
