@@ -53,7 +53,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>3.3.0</version>
         <configuration>
           <archive>
             <manifest>
@@ -63,6 +63,8 @@
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
+          <!-- Specify the desired name of the JAR file -->
+          <finalName>CochraneLibraryCrawler-1.0-SNAPSHOT</finalName>
         </configuration>
         <executions>
           <execution>
