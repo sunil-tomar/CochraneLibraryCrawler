@@ -18,7 +18,8 @@
     <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
-      <version>1.10.2</version> <!-- Use the latest version available -->
+      <version>1.16.1</version> <!-- Use the latest version available -->
+      <!--<scope>compile</scope>-->
     </dependency>
 
     <dependency>

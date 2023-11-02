@@ -1,6 +1,7 @@
 package com.cochrane;
 
-import org.jsoup.helper.StringUtil;
+
+import org.jsoup.internal.StringUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

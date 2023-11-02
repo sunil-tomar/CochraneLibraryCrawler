@@ -1,7 +1,7 @@
 package com.cochrane;
 
 import org.jsoup.Jsoup;
-import org.jsoup.helper.StringUtil;
+import org.jsoup.internal.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
@@ -59,7 +59,7 @@ public class App {
 
             //Total Reviews for topic.
             String topicTotalReviewCountStr=docByTopic.select(".results-count .results-number").text();
-            int topicTotalReviewCount=StringUtil.isBlank(topicTotalReviewCountStr)?null: Integer.valueOf(topicTotalReviewCountStr);
+            int topicTotalReviewCount= StringUtil.isBlank(topicTotalReviewCountStr)?null: Integer.valueOf(topicTotalReviewCountStr);
 
             System.out.println(" --total topic count : " + topicTotalReviewCount);
 
