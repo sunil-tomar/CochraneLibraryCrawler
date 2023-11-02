@@ -13,7 +13,7 @@ public class FileHandling {
         fileName = getUniqueFileName(fileName);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             writer.write(textToWrite);
-            System.out.println("Text written to " + fileName);
+            System.out.println("Please Find output in this file : " + fileName);
         } catch (IOException e) {
             e.printStackTrace();
             //TODO add logger

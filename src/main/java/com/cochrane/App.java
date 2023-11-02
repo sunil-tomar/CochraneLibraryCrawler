@@ -43,7 +43,6 @@ public class App {
           System.err.println("Provide Topic is not currently available in Library ");
           return;
       }
-            String searchedTopicUrl = article.getUrl(); //TODO currently url in reviews not working
             String topic=article.getTopic();
             final String baseUrl="https://www.cochranelibrary.com";
             final String customUrl = "https://www.cochranelibrary.com/search" +
@@ -57,34 +56,19 @@ public class App {
             //call url with provided topic;
             Document docByTopic = Jsoup.connect(customUrl).get();
 
-            //Total Reviews for topic.
-            String topicTotalReviewCountStr=docByTopic.select(".results-count .results-number").text();
-            int topicTotalReviewCount= StringUtil.isBlank(topicTotalReviewCountStr)?null: Integer.valueOf(topicTotalReviewCountStr);
-
-            System.out.println(" --total topic count : " + topicTotalReviewCount);
-
             // Find and select the elements that contain review information
             String classHierarchyByTopic = ".site-container .search-results-section-body .search-results-item";
             Elements currentElementChunk = docByTopic.select(classHierarchyByTopic);
 
-            System.out.println("currently fetched count : "+currentElementChunk.size());
-
-            //if currentElementChunk < topicTotalReviewCount then collect other page records also.
-            //Call same function with different page(cur=1, 2,.. n)
-            //Merge all reviews in write in file.
-
             //Parsing Data from Element to Article List
             List<Article> articleListFromTopicSearch=parseReviewForTopic(currentElementChunk, baseUrl, topic);
-
-            System.out.println(" total topic count : " + articleListFromTopicSearch.size());
-            articleListFromTopicSearch.forEach(System.out::println);
 
             //Converting data to text format
             String textData=articleListFromTopicSearch.stream().map(Article::toString).collect(Collectors.joining(","));
             //Writing to file.
             writeTextDataIntoFile(topic, textData);
 
-            System.out.println("Searched topic is wrote in text file checkout.");
+            System.out.println("Search completed");
         } catch (IOException e) {
             e.printStackTrace();
         }

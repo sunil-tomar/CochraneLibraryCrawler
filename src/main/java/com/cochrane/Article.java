@@ -76,8 +76,6 @@ public class Article {
         try {
             Date date = inputDateFormat.parse(inputDate);
             String formattedDate = outputDateFormat.format(date);
-            System.out.println("Original Date: " + inputDate);
-            System.out.println("Formatted Date: " + formattedDate);
             return formattedDate;
         } catch (ParseException e) {
             e.printStackTrace();
