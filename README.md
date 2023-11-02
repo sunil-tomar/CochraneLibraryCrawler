@@ -1,5 +1,4 @@
-# CochraneLibraryCrawler
-Cochrane Library Crawler
+# Cochrane Library Crawler
 
 The Cochrane Library Crawler is a Java-based tool designed for efficient data retrieval from the Cochrane Library website.
 It simplifies the process of searching for medical topics, collecting comprehensive review data, and organizing findings.
